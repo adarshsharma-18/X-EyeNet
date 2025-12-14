@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 
 mp_face_mesh = mp.solutions.face_mesh
 
-
-image = cv2.imread("C:/Users/Adarsh Sharma/OneDrive/Desktop/MAJOR/dataset/train_1/train_1/1629243_1.jpg")
+image = cv2.imread("C:/Users/Adarsh Sharma/OneDrive/Desktop/major projetc/X-EyeNet/dataset/train_1/train_1/1629243_1.jpg")
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 with mp_face_mesh.FaceMesh(
@@ -78,3 +77,22 @@ plt.title("Right Eye Crop")
 plt.axis("off")
 
 plt.show()
+
+import os
+
+SAVE_DIR = "output_eyes"
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+def normalize_eye(eye_img, size=(128,128)):
+    eye_resized = cv2.resize(eye_img, size)
+    eye_norm = eye_resized.astype(np.float32) / 255.0
+    return eye_norm
+
+left_eye_norm = normalize_eye(left_eye_crop)
+right_eye_norm = normalize_eye(right_eye_crop)
+
+cv2.imwrite(f"{SAVE_DIR}/left_eye.jpg", cv2.cvtColor(left_eye_crop, cv2.COLOR_RGB2BGR))
+cv2.imwrite(f"{SAVE_DIR}/right_eye.jpg", cv2.cvtColor(right_eye_crop, cv2.COLOR_RGB2BGR))
+
+
+
