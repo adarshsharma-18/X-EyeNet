@@ -1,3 +1,4 @@
 # Ignore archive folder completely
 dataset/
 
+eye_ipynb_env/
