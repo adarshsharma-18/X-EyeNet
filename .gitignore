@@ -1,4 +1,6 @@
 # Ignore archive folder completely
 dataset/
-
+dataset2/
+dataset2_preprocessed/
 eye_ipynb_env/
+eye_env/
