@@ -111,10 +111,22 @@ def predict_diabetic_retinopathy(image_path, model, device):
 # MAIN SCRIPT ENTRY POINT
 # ======================================================
 def main():
-    # parser = argparse.ArgumentParser(description="Diabetic Retinopathy Prediction")
-    # parser.add_argument("--image", type=str, required=True, help="Path to input retina image")
-    # parser.add_argument("--model", type=str, required=True, help="Path to trained model (.pth)")
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="Diabetic Retinopathy Prediction")
+    parser.add_argument(
+        "--image",
+        type=str,
+        required=False,
+        default="C:\\Users\\Adarsh Sharma\\OneDrive\\Desktop\\major projetc\\X-EyeNet\\file format\\image.png",
+        help="Path to input retina image (default: builtin path)",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        required=False,
+        default="C:\\Users\\Adarsh Sharma\\OneDrive\\Desktop\\major projetc\\X-EyeNet\\efficientnet_b3_final.pth",
+        help="Path to trained model (.pth) (default: builtin model)",
+    )
+    args = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -122,8 +134,8 @@ def main():
     model = load_model(args.model, device)
     print("Model Loaded.")
 
-    print("Processing image...")
-    raw_value, dr_class, preprocessed_img = predict_diabetic_retinopathy("image.png","C:\Users\Adarsh Sharma\OneDrive\Desktop\major projetc\X-EyeNet\efficientnetb3_best.pth", device)
+    print(f"Processing image: {args.image}")
+    raw_value, dr_class, preprocessed_img = predict_diabetic_retinopathy(args.image, model, device)
 
     print("\n===========================")
     print("Prediction Results")
