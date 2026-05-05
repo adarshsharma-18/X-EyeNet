@@ -138,3 +138,37 @@ curl -X POST "http://localhost:8002/predict_external_eye" \
 ## Troubleshooting
 - **Model not found error**: Ensure `external_eye_resnet_model.h5` and `FINAL_EfficientNetB3_CORAL.pth` / `FINAL_CORAL_thresholds.npy` are placed in the correct directories as specified by the respective Python files.
 - **Port already in use**: If ports 8001 or 8002 are occupied, edit the `app.run(port=...)` lines at the bottom of the Python scripts.
+
+- # ---------------------------
+# CORE VERSIONS (DO NOT CHANGE)
+# ---------------------------
+python_version == "3.10"
+tensorflow==2.10.0
+tensorflow-addons==0.20.0
+numpy==1.23.5
+
+# ---------------------------
+# COMPUTER VISION (SAFE VERSIONS)
+# ---------------------------
+opencv-python==4.7.0.72
+opencv-python-headless==4.7.0.72
+scikit-image==0.19.3
+
+# ---------------------------
+# AUGMENTATION
+# ---------------------------
+albumentations==1.3.1
+qudida==0.0.4
+PyYAML==6.0.1
+
+# ---------------------------
+# ML / DATA PROCESSING
+# ---------------------------
+scikit-learn==1.3.0
+pandas==2.0.3
+matplotlib==3.7.1
+
+# ---------------------------
+# OPTIONAL UTILITIES
+# ---------------------------
+tqdm
